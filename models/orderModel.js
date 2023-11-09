@@ -1,4 +1,4 @@
-const mongoose = require("mongoose"); 
+const mongoose = require("mongoose");
 
 
 var orderSchema = new mongoose.Schema(
@@ -73,6 +73,10 @@ var orderSchema = new mongoose.Schema(
       paidAt: {
          type: Date,
          default: Date.now()
+      },
+      month: {
+         type: String,
+         default: new Date().getMonth()
       },
       totalPrice: {
          type: Number,
