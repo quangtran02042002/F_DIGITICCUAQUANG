@@ -1,5 +1,5 @@
 const express = require('express');
-const { createUser, loginUserCtrl, getallUser, getaUser, deleteaUser, updatedUser, blockUser, unblockUser, handleRefreshToken, logout, updatePassword, forgotPasswordToken, resetPassword, loginAdmin, getWishlist, saveAddress, userCart, getUserCart, emptyCart, applyCounpon, applyCoupon, createOrder, getOrders, updateOrderStatus, getAllOrders, getOrderByUserId, getOrderById, removeProductFromCart, updateProductQuantityFromCart, getMonthWiseOrderIncome, getYearlyTotalOrders, getSingleOrder, updateOrder } = require('../controller/userCtrl');
+const { createUser, loginUserCtrl, getallUser, getAllOrders, getaUser, deleteaUser, updatedUser, blockUser, unblockUser, handleRefreshToken, logout, updatePassword, forgotPasswordToken, resetPassword, loginAdmin, getWishlist, saveAddress, userCart, getUserCart, createOrder, removeProductFromCart, updateProductQuantityFromCart, getMonthWiseOrderIncome, getYearlyTotalOrders, getSingleOrder, updateOrder, getMyOrders } = require('../controller/userCtrl');
 const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
 const { checkout, paymentVerification } = require('../controller/paymentCtrl');
 const router = express.Router();
@@ -23,6 +23,7 @@ router.post("/cart/create-order", authMiddleware, createOrder);
 
 router.get("/all-users", getallUser);
 // router.get("/get-orders", authMiddleware, getOrders);
+router.get("/getmyorders", authMiddleware, isAdmin, getMyOrders);
 router.get("/getallorders", authMiddleware, isAdmin, getAllOrders);
 router.get("/getaOrder/:id", authMiddleware, isAdmin, getSingleOrder);
 router.put("/updateOrder/:id", authMiddleware, isAdmin, updateOrder);
