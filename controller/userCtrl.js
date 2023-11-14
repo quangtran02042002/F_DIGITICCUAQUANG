@@ -380,6 +380,17 @@ const removeProductFromCart = asyncHandler(async (req, res) => {
   }
 })
 
+const emptyCart = asyncHandler(async (req, res) => {
+  const { _id } = req.user;
+  validateMongoDbId(_id);
+  try {
+    const deleteCart = await Cart.deleteMany({ userId: _id })
+    res.json(deleteCart)
+  } catch (error) {
+    throw new Error(error)
+  }
+})
+
 const updateProductQuantityFromCart = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   const { cartItemId, newQuantity } = req.params;
@@ -399,7 +410,7 @@ const createOrder = asyncHandler(async (req, res) => {
 
   try {
     const order = await Order.create({
-      shippingInfo, orderItems, totalPrice, totalPriceAfterDiscount, paymentInfo, user: _id
+      shippingInfo, orderItems, totalPrice, totalPriceAfterDiscount, paymentInfo, user:_id
     })
     res.json({
       order,
@@ -436,5 +447,6 @@ module.exports = {
   //  getOrderById, 
   removeProductFromCart,
   createOrder,
-  getMyOrders
+  getMyOrders,
+  emptyCart
 };

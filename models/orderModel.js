@@ -6,46 +6,46 @@ var orderSchema = new mongoose.Schema(
       user: {
          type: mongoose.Schema.Types.ObjectId,
          ref: "User",
-         require: true
+         required: true
       },
       shippingInfo: {
          firstName: {
             type: String,
-            require: true
+            required: true
          },
          lastName: {
             type: String,
-            require: true
+            required: true
          },
          address: {
             type: String,
-            require: true
+            required: true
          },
          city: {
             type: String,
-            require: true
+            required: true
          },
          state: {
             type: String,
-            require: true
+            required: true
          },
          other: {
             type: String,
-            require: true
+            required: true
          },
          pincode: {
             type: Number,
-            require: true
+            required: true
          },
       },
       paymentInfo: {
          razorpayOrderId: {
             type: String,
-            require: true
+            required: true
          },
          razorpayPaymentId: {
             type: String,
-            require: true
+            required: true
          },
       },
       orderItem: [
@@ -53,20 +53,20 @@ var orderSchema = new mongoose.Schema(
             product: {
                type: mongoose.Schema.Types.ObjectId,
                ref: "Product",
-               require: true
+               required: true
             },
             color: {
                type: mongoose.Schema.Types.ObjectId,
                ref: "Color",
-               require: true
+               required: true
             },
             quantity: {
                type: Number,
-               require: true
+               required: true
             },
             price: {
                type: Number,
-               require: true
+               required: true
             },
          }
       ],
@@ -76,11 +76,11 @@ var orderSchema = new mongoose.Schema(
       },
       totalPrice: {
          type: Number,
-         require: true
+         required: true
       },
       totalPriceAfterDiscount: {
          type: Number,
-         require: true
+         required: true
       },
       orderStatus: {
          type: String,
